@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-
 const mongoose = require('mongoose');
+
 
 
 const app = express();
@@ -22,6 +22,11 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get('/', (req, res) => {
   res.send('Hola Programacion Web I....');
 });
+
+
+const clientesRoutes = require('./Routes/clientes');
+app.use('/clientes', clientesRoutes);
+
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
