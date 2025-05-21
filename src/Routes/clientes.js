@@ -7,18 +7,26 @@ router.get('/', async (req, res) => {
     const clientes = await Cliente.find(); // select * from clientes
     res.json(clientes);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener los clientes' });
+    res.status(500).json({ message:error.message });
   }
 });
 
 // registrar un nuevo cliente
 router.post('/', async (req, res) => {
-  const cliente = new Cliente(res.body);
   try {
-    await cliente.save();// insert into clientes
-    res.status(201).json(cliente);
+    const { nombre, apellido, email } = req.body;
+    const cli = {
+      nombre,
+      apellido,
+      email,
+    };
+  
+    const cliente = new Cliente(cli);
+    console.log(cli);
+    await cliente.save();
+    res.status(201).send(cliente);
   } catch (error) {
-    res.status(400).json({ message: 'Error al registrar el cliente' });
+    res.status(400).send(error);
   }
 });
 
