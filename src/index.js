@@ -33,6 +33,12 @@ app.get('/', (req, res) => {
 const clientesRoutes = require('./Routes/clientes.routes');
 app.use('/clientes', clientesRoutes);
 
+const productosRoutes = require('./Routes/productos.routes');
+app.use('/productos', productosRoutes);
+
+const ventasRoutes = require('./Routes/ventas.routes');
+app.use('/ventas', ventasRoutes);
+
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
