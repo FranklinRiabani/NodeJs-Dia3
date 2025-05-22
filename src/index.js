@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 
 
-const clientesRoutes = require('./Routes/clientes');
+const clientesRoutes = require('./Routes/clientes.routes');
 app.use('/clientes', clientesRoutes);
 
 
